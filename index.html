@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#09090b" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="STAGE NOW" />
+    <meta name="description" content="スプラトゥーン3の現在と次のステージ情報を表示するスマートディスプレイ" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <style>
+      @font-face {
+        font-family: "Inkling_v2";
+        src: local("Inkling_v2"), local("Inkling"),
+          url("https://frozenpandaman.github.io/Inkling_v2.otf") format("opentype");
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "ikamodoki1_0";
+        src: local("ikamodoki1_0"), local("イカモドキ"),
+          url("./fonts/ikamodoki1_0.ttf") format("truetype");
+        font-display: swap;
+      }
+    </style>
+    <title>STAGE NOW — スプラトゥーン3 ステージ情報</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

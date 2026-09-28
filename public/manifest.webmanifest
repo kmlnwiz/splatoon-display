@@ -1,0 +1,20 @@
+{
+  "name": "STAGE NOW — スプラトゥーン3 ステージ情報",
+  "short_name": "STAGE NOW",
+  "description": "現在と次のステージ情報を表示するスマートディスプレイ",
+  "lang": "ja",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
