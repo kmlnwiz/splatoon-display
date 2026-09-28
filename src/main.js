@@ -82,11 +82,25 @@ root.innerHTML = `
       <a class="api-credit" href="https://spla3.yuu26.com/" target="_blank" rel="noreferrer">DATA: Spla3 API</a>
     </footer>
   </div>
+  <dialog class="stage-dialog" id="stage-dialog" aria-labelledby="stage-dialog-title">
+    <div class="stage-dialog-panel">
+      <button class="stage-dialog-close" type="button" data-action="close-stage" aria-label="拡大表示を閉じる">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
+      <img class="stage-dialog-image" id="stage-dialog-image" alt="">
+      <p class="stage-dialog-title" id="stage-dialog-title"></p>
+    </div>
+  </dialog>
 `
 
 const scheduleElement = document.querySelector('#schedule')
 const refreshButton = document.querySelector('[data-action="refresh"]')
 const fullscreenButton = document.querySelector('[data-action="fullscreen"]')
+const stageDialog = document.querySelector('#stage-dialog')
+const stageDialogImage = document.querySelector('#stage-dialog-image')
+const stageDialogTitle = document.querySelector('#stage-dialog-title')
+const stageDialogClose = document.querySelector('[data-action="close-stage"]')
+let lastStageTrigger = null
 
 function escapeHtml(value = '') {
   return String(value)
@@ -188,6 +202,21 @@ function imageMarkup(image, name) {
   `
 }
 
+function stageTileMarkup(stage, extraClass = '') {
+  const name = stage?.name || 'ステージ未定'
+  const url = safeImageUrl(stage?.image)
+  const className = `stage-tile${extraClass ? ` ${extraClass}` : ''}`
+  const content = imageMarkup(stage?.image, name)
+
+  if (!url) return `<div class="${className}">${content}</div>`
+
+  return `
+    <button class="${className}" type="button" data-stage-image="${escapeHtml(url)}" data-stage-name="${escapeHtml(name)}" aria-label="${escapeHtml(name)}を拡大表示">
+      ${content}
+    </button>
+  `
+}
+
 function progressMeterMarkup(slot) {
   return `
     <div class="schedule-progress" data-start="${escapeHtml(slot.start_time)}" data-end="${escapeHtml(slot.end_time)}" role="progressbar" aria-label="スケジュール経過時間" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
@@ -231,9 +260,7 @@ function battleSlotMarkup(entry, modeKey) {
       </div>
       ${progressMeterMarkup(slot)}
       <div class="stage-stack">
-        ${(slot.stages ?? []).slice(0, 2).map((stage) => `
-          <div class="stage-tile">${imageMarkup(stage.image, stage.name)}</div>
-        `).join('') || emptySlot()}
+        ${(slot.stages ?? []).slice(0, 2).map((stage) => stageTileMarkup(stage)).join('') || emptySlot()}
       </div>
       ${eventText}
     </section>
@@ -254,7 +281,7 @@ function salmonSlotMarkup(entry) {
         <time class="slot-time">${formatRange(slot, true)}</time>
       </div>
       ${progressMeterMarkup(slot)}
-      <div class="stage-tile salmon-stage">${imageMarkup(slot.stage?.image, slot.stage?.name)}</div>
+      ${stageTileMarkup(slot.stage, 'salmon-stage')}
       <div class="weapon-strip" aria-label="支給ブキ">
         ${(slot.weapons ?? []).slice(0, 4).map((weapon) => {
     const url = safeImageUrl(weapon.image)
@@ -582,8 +609,55 @@ async function enterFullscreen() {
   }
 }
 
+function openStageImage(trigger) {
+  const url = safeImageUrl(trigger.dataset.stageImage)
+  if (!url) return
+
+  const name = trigger.dataset.stageName || 'ステージ'
+  lastStageTrigger = trigger
+  stageDialogImage.src = url
+  stageDialogImage.alt = `${name}のステージ画像`
+  stageDialogTitle.textContent = name
+
+  if (typeof stageDialog.showModal === 'function') {
+    if (!stageDialog.open) stageDialog.showModal()
+    return
+  }
+
+  stageDialog.setAttribute('open', '')
+}
+
+function closeStageImage() {
+  if (stageDialog.open && typeof stageDialog.close === 'function') {
+    stageDialog.close()
+    return
+  }
+
+  stageDialog.removeAttribute('open')
+  stageDialogImage.removeAttribute('src')
+  if (lastStageTrigger?.isConnected) lastStageTrigger.focus()
+  lastStageTrigger = null
+}
+
 refreshButton.addEventListener('click', () => loadData({ manual: true }))
 fullscreenButton.addEventListener('click', enterFullscreen)
+scheduleElement.addEventListener('click', (event) => {
+  const trigger = event.target.closest('[data-stage-image]')
+  if (trigger) openStageImage(trigger)
+})
+stageDialogClose.addEventListener('click', closeStageImage)
+stageDialog.addEventListener('click', (event) => {
+  if (event.target === stageDialog) closeStageImage()
+})
+stageDialog.addEventListener('cancel', (event) => {
+  event.preventDefault()
+  closeStageImage()
+})
+stageDialog.addEventListener('close', () => {
+  stageDialogImage.removeAttribute('src')
+  if (lastStageTrigger?.isConnected) lastStageTrigger.focus()
+  lastStageTrigger = null
+})
 
 document.addEventListener('visibilitychange', () => {
   if (!document.hidden) {
