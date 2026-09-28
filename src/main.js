@@ -222,13 +222,13 @@ function battleSlotMarkup(entry, modeKey) {
         </div>
         <time class="slot-time">${formatRange(slot)}</time>
       </div>
+      ${progressMeterMarkup(slot)}
       <div class="stage-stack">
         ${(slot.stages ?? []).slice(0, 2).map((stage) => `
           <div class="stage-tile">${imageMarkup(stage.image, stage.name)}</div>
         `).join('') || emptySlot()}
       </div>
       ${eventText}
-      ${progressMeterMarkup(slot)}
     </section>
   `
 }
@@ -246,6 +246,7 @@ function salmonSlotMarkup(entry) {
         </div>
         <time class="slot-time">${formatRange(slot)}</time>
       </div>
+      ${progressMeterMarkup(slot)}
       <div class="stage-tile salmon-stage">${imageMarkup(slot.stage?.image, slot.stage?.name)}</div>
       <div class="weapon-strip" aria-label="支給ブキ">
         ${(slot.weapons ?? []).slice(0, 4).map((weapon) => {
@@ -257,7 +258,6 @@ function salmonSlotMarkup(entry) {
           `
         }).join('')}
       </div>
-      ${progressMeterMarkup(slot)}
     </section>
   `
 }
