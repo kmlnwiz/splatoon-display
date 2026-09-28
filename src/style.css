@@ -256,17 +256,14 @@ button {
   height: 34px;
   display: grid;
   place-items: center;
-  color: #09090b;
-  border-radius: 11px 7px 12px 8px;
-  background: var(--accent);
-  transform: rotate(-3deg);
-  box-shadow: 0 5px 16px color-mix(in srgb, var(--accent) 28%, transparent);
+  border-radius: 8px;
 }
 
-.mode-icon svg {
-  width: 21px;
-  height: 21px;
-  transform: rotate(3deg);
+.mode-icon img {
+  width: 34px;
+  height: 34px;
+  display: block;
+  object-fit: contain;
 }
 
 .mode-title {
@@ -393,16 +390,18 @@ button {
 
 .stage-name {
   position: absolute;
-  inset: auto 6px 5px;
+  inset: auto 7px 6px;
   z-index: 1;
   overflow: hidden;
   color: #fff;
-  font-size: 0.67rem;
+  display: -webkit-box;
+  font-size: 0.75rem;
   font-weight: 900;
-  line-height: 1.1;
-  text-overflow: ellipsis;
+  line-height: 1.18;
   text-shadow: 0 1px 3px #000;
-  white-space: nowrap;
+  white-space: normal;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .stage-fallback {
@@ -466,8 +465,12 @@ button {
 .mode-salmon .slot {
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
-  grid-template-rows: 28px 84px;
+  grid-template-rows: 28px 107px;
   column-gap: 6px;
+}
+
+.mode-salmon .salmon-stage {
+  height: 107px;
 }
 
 .mode-salmon .slot-heading {
@@ -477,6 +480,7 @@ button {
 .mode-salmon .weapon-strip {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 4px;
   margin-top: 0;
 }
 
@@ -484,12 +488,12 @@ button {
   min-height: 0;
   aspect-ratio: auto;
   overflow: hidden;
-  padding: 4px;
+  padding: 2px;
 }
 
 .mode-salmon .weapon img {
-  width: 100%;
-  height: 100%;
+  width: 88%;
+  height: 88%;
   display: block;
   object-position: center;
   filter: none;

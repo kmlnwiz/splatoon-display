@@ -15,15 +15,15 @@ const colors = {
   event: '#f93195',
 }
 
-const icons = {
-  regular: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 15.5c2.2-1.8 4-1.4 5.8.1 2.2 1.8 4.4 2.1 7.1.2M5.5 9.5c1.8-3.9 5.2-5.1 8-2.8 1.1.9 1.7 2.1 2 3.6M6 18.5h12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="17.5" cy="8" r="2.1" fill="currentColor"/></svg>',
-  bankara: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m12 3 2.1 5.3L20 9l-4.5 3.7L17 19l-5-3.2L7 19l1.5-6.3L4 9l5.9-.7L12 3Z" fill="currentColor"/></svg>',
-  x: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 5 12 14M18 5 6 19" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>',
-  salmon: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12c3.1-5.7 9.4-7.2 15-3.3l-2.4 2.7 2.4 3c-5.6 3.8-12 2.5-15-2.4Z" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/><circle cx="14.8" cy="9.7" r="1.1" fill="currentColor"/><path d="m7 14-2.5 4M7.2 10 5 6.7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
-  event: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m12 2.8 2.3 5.4 5.7.6-4.3 3.9 1.2 5.7-4.9-2.9-4.9 2.9 1.2-5.7L4 8.8l5.7-.6L12 2.8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>',
-}
-
 const SPLATOON3_INK_ASSETS = 'https://raw.githubusercontent.com/misenhower/splatoon3.ink/main/src/assets/img'
+
+const icons = {
+  regular: `${SPLATOON3_INK_ASSETS}/modes/regular.svg`,
+  bankara: `${SPLATOON3_INK_ASSETS}/modes/bankara.svg`,
+  x: `${SPLATOON3_INK_ASSETS}/modes/x.svg`,
+  salmon: `${SPLATOON3_INK_ASSETS}/modes/coop.svg`,
+  event: `${SPLATOON3_INK_ASSETS}/modes/event.svg`,
+}
 
 const ruleIcons = {
   TURF_WAR: `${SPLATOON3_INK_ASSETS}/rules/regular.svg`,
@@ -256,7 +256,7 @@ function modeCard({ key, title, color, icon, slots, salmon = false }) {
   return `
     <article class="mode-card mode-${key}" style="--accent:${color}">
       <header class="mode-header">
-        <div class="mode-icon">${icon}</div>
+        <div class="mode-icon"><img src="${escapeHtml(icon)}" alt="" loading="eager" referrerpolicy="no-referrer"></div>
         <div class="mode-title">
           <h2>${escapeHtml(title)}</h2>
         </div>
@@ -319,14 +319,14 @@ function render() {
     },
     {
       key: 'bankara-open',
-      title: 'バンカラ・オープン',
+      title: 'バンカラマッチ（オープン）',
       color: colors.bankara,
       icon: icons.bankara,
       slots: pickSlots(battle.bankara_open, now),
     },
     {
       key: 'bankara-challenge',
-      title: 'バンカラ・チャレンジ',
+      title: 'バンカラマッチ（チャレンジ）',
       color: colors.bankara,
       icon: icons.bankara,
       slots: pickSlots(battle.bankara_challenge, now),
