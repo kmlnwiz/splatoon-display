@@ -161,8 +161,17 @@ button {
 }
 
 @media (orientation: landscape) and (min-width: 900px) {
-  .display-shell {
+  #root {
     min-height: 100dvh;
+    display: grid;
+    place-items: center;
+  }
+
+  .display-shell {
+    width: min(100vw, 133.333333dvh, 1112px);
+    height: min(100dvh, 75vw, 834px);
+    min-height: 0;
+    margin: auto;
     padding: max(12px, env(safe-area-inset-top)) max(18px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(18px, env(safe-area-inset-left));
   }
 
