@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  font-family: "ikamodoki1_0", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  font-family: "M PLUS 1p", -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
   color: #f6f6f2;
   background: #09090b;
   font-synthesis: none;
@@ -62,7 +62,8 @@ button {
 }
 
 .ink-font {
-  font-family: "Inkling_v2", "Arial Black", sans-serif;
+  font-family: "M PLUS 1p", sans-serif;
+  font-weight: 900;
   letter-spacing: 0.07em;
 }
 
@@ -104,7 +105,8 @@ button {
 
 .clock-time {
   display: block;
-  font-family: "Inkling_v2", ui-monospace, monospace;
+  font-family: "M PLUS 1p", sans-serif;
+  font-variant-numeric: tabular-nums;
   font-size: clamp(1.8rem, 4.5vw, 2.45rem);
   line-height: 0.9;
   letter-spacing: 0.06em;
@@ -114,7 +116,8 @@ button {
   display: block;
   margin-top: 7px;
   color: #aaaab2;
-  font-family: ui-monospace, monospace;
+  font-family: "M PLUS 1p", sans-serif;
+  font-variant-numeric: tabular-nums;
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -199,11 +202,11 @@ button {
   }
 
   .stage-tile {
-    height: 72px;
+    height: 84px;
   }
 
   .salmon-stage {
-    height: 82px;
+    height: 84px;
   }
 
   .page-footer {
@@ -320,13 +323,15 @@ button {
 
 .slots {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 6px;
   padding: 9px 10px 10px 14px;
 }
 
 .slot {
   min-width: 0;
+  min-height: 0;
 }
 
 .slot-heading {
@@ -339,7 +344,7 @@ button {
 
 .slot-state {
   color: var(--accent);
-  font-family: "Inkling_v2", ui-monospace, monospace;
+  font-family: "M PLUS 1p", sans-serif;
   font-size: 0.68rem;
   font-weight: 900;
   letter-spacing: 0.1em;
@@ -347,7 +352,8 @@ button {
 
 .slot-time {
   color: #aaaab1;
-  font-family: ui-monospace, monospace;
+  font-family: "M PLUS 1p", sans-serif;
+  font-variant-numeric: tabular-nums;
   font-size: 0.63rem;
   font-weight: 700;
   white-space: nowrap;
@@ -355,11 +361,12 @@ button {
 
 .stage-stack {
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 5px;
 }
 
 .stage-tile {
-  height: 68px;
+  height: 84px;
   position: relative;
   overflow: hidden;
   border: 1px solid rgb(255 255 255 / 0.08);
@@ -410,7 +417,7 @@ button {
   position: absolute;
   inset: 0;
   color: #777781;
-  font-family: "Inkling_v2", sans-serif;
+  font-family: "M PLUS 1p", sans-serif;
   font-size: 1.3rem;
 }
 
@@ -427,7 +434,7 @@ button {
 }
 
 .salmon-stage {
-  height: 79px;
+  height: 84px;
 }
 
 .weapon-strip {
@@ -453,6 +460,33 @@ button {
   height: 90%;
   object-fit: contain;
   filter: drop-shadow(0 3px 2px rgb(0 0 0 / 0.45));
+}
+
+.stage-stack > .empty-slot {
+  grid-column: 1 / -1;
+  height: 84px;
+}
+
+.mode-salmon .slot {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  grid-template-rows: 28px 84px;
+  column-gap: 6px;
+}
+
+.mode-salmon .slot-heading {
+  grid-column: 1 / -1;
+}
+
+.mode-salmon .weapon-strip {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  margin-top: 0;
+}
+
+.mode-salmon .weapon {
+  min-height: 0;
+  aspect-ratio: auto;
 }
 
 .empty-slot {
@@ -567,13 +601,14 @@ button {
 
 .skeleton-body {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  padding: 38px 12px 12px 15px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 6px;
+  padding: 36px 12px 12px 15px;
 }
 
 .skeleton-body .skeleton-block {
-  height: 147px;
+  height: 84px;
 }
 
 .error-panel {
@@ -622,7 +657,7 @@ button {
   }
 
   .stage-tile {
-    height: 70px;
+    height: 84px;
   }
 }
 
@@ -658,7 +693,7 @@ button {
 
   .mode-card,
   .skeleton-card {
-    min-height: 252px;
+    min-height: 302px;
   }
 }
 

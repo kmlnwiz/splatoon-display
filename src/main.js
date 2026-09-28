@@ -218,7 +218,7 @@ function modeCard({ key, title, subtitle, color, icon, slots, salmon = false }) 
   const badge = firstRule || salmonMeta
 
   return `
-    <article class="mode-card" style="--accent:${color}">
+    <article class="mode-card mode-${key}" style="--accent:${color}">
       <header class="mode-header">
         <div class="mode-icon">${icon}</div>
         <div class="mode-title">
