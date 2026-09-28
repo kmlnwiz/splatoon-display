@@ -308,7 +308,7 @@ button {
 
 .mode-card:not(.mode-salmon) .slot {
   display: grid;
-  grid-template-rows: 28px minmax(107px, 1fr);
+  grid-template-rows: 26px 2px minmax(107px, 1fr);
   align-content: start;
 }
 
@@ -323,7 +323,7 @@ button {
 }
 
 .slot-heading {
-  height: 28px;
+  height: 26px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -354,8 +354,8 @@ button {
 }
 
 .schedule-icon.boss-icon {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
 }
 
 .rule-name {
@@ -372,8 +372,7 @@ button {
 .schedule-progress {
   --progress: 0%;
   height: 2px;
-  position: absolute;
-  inset: 28px 0 auto;
+  position: relative;
   z-index: 4;
   overflow: hidden;
   border-radius: 999px;
@@ -534,7 +533,7 @@ button {
 .mode-salmon .slot {
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
-  grid-template-rows: 28px minmax(107px, 1fr);
+  grid-template-rows: 26px 2px minmax(107px, 1fr);
   column-gap: 6px;
 }
 
@@ -544,6 +543,10 @@ button {
 }
 
 .mode-salmon .slot-heading {
+  grid-column: 1 / -1;
+}
+
+.mode-salmon .schedule-progress {
   grid-column: 1 / -1;
 }
 
