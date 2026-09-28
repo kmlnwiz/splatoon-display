@@ -188,7 +188,7 @@ function scheduleIcon(src, label, type) {
 function ruleIconMarkup(slot) {
   const key = slot.rule?.key || (slot.is_fest ? 'FEST' : 'DEFAULT')
   const label = slot.rule?.name || (slot.is_fest ? 'フェスマッチ' : 'ルール未定')
-  return scheduleIcon(ruleIcons[key] ?? ruleIcons.DEFAULT, label, 'rule-icon')
+  return `${scheduleIcon(ruleIcons[key] ?? ruleIcons.DEFAULT, label, 'rule-icon')}<span class="rule-name">${escapeHtml(label)}</span>`
 }
 
 function bossIconMarkup(slot) {
@@ -312,7 +312,7 @@ function render() {
   const cards = [
     {
       key: 'regular',
-      title: regularIsFest ? 'フェスマッチ' : 'ナワバリ',
+      title: regularIsFest ? 'フェスマッチ' : 'レギュラーマッチ',
       color: regularIsFest ? colors.fest : colors.regular,
       icon: icons.regular,
       slots: regularSlots,
