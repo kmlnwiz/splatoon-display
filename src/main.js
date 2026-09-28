@@ -115,9 +115,16 @@ function formatTime(value) {
   }).format(new Date(value))
 }
 
-function formatRange(slot) {
+function formatDateTime(value) {
+  if (!value) return '--/-- --:--'
+  const date = new Date(value)
+  return `${date.getMonth() + 1}/${date.getDate()} ${formatTime(value)}`
+}
+
+function formatRange(slot, showDate = false) {
   if (!slot) return '--:-- - --:--'
-  return `${formatTime(slot.start_time)} - ${formatTime(slot.end_time)}`
+  const formatter = showDate ? formatDateTime : formatTime
+  return `${formatter(slot.start_time)} - ${formatter(slot.end_time)}`
 }
 
 function pickSlots(items = [], now = new Date()) {
@@ -220,7 +227,7 @@ function battleSlotMarkup(entry, modeKey) {
           <span class="slot-state">${escapeHtml(entry.stateLabel)}</span>
           ${ruleIconMarkup(slot)}
         </div>
-        <time class="slot-time">${formatRange(slot)}</time>
+        <time class="slot-time">${formatRange(slot, modeKey === 'event')}</time>
       </div>
       ${progressMeterMarkup(slot)}
       <div class="stage-stack">
@@ -244,7 +251,7 @@ function salmonSlotMarkup(entry) {
           <span class="slot-state">${escapeHtml(entry.stateLabel)}</span>
           ${bossIconMarkup(slot)}
         </div>
-        <time class="slot-time">${formatRange(slot)}</time>
+        <time class="slot-time">${formatRange(slot, true)}</time>
       </div>
       ${progressMeterMarkup(slot)}
       <div class="stage-tile salmon-stage">${imageMarkup(slot.stage?.image, slot.stage?.name)}</div>
