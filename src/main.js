@@ -23,21 +23,24 @@ const icons = {
   event: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m12 2.8 2.3 5.4 5.7.6-4.3 3.9 1.2 5.7-4.9-2.9-4.9 2.9 1.2-5.7L4 8.8l5.7-.6L12 2.8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>',
 }
 
+const SPLATOON3_INK_ASSETS = 'https://raw.githubusercontent.com/misenhower/splatoon3.ink/main/src/assets/img'
+
 const ruleIcons = {
-  TURF_WAR: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3C9.5 7 6 10.2 6 14a6 6 0 0 0 12 0c0-3.8-3.5-7-6-11Z" fill="currentColor"/><circle cx="9.5" cy="14" r="1.4" fill="#111115"/><circle cx="14.7" cy="12.5" r="1.2" fill="#111115"/></svg>',
-  AREA: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2" stroke="currentColor" stroke-width="2.2"/><path d="M12 2v5M12 17v5M2 12h5M17 12h5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="12" r="2.3" fill="currentColor"/></svg>',
-  LOFT: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v18M7 8h10v9H7zM5 21h14" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/><path d="m9 5 3-3 3 3" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-  GOAL: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12c2.5-4.2 6.6-5.5 10.3-3.4L20 6l-1.5 5L21 14l-6.7 1.4C10.5 17.5 6.4 16.2 4 12Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="13.7" cy="10.8" r="1.2" fill="currentColor"/><path d="m7 15-2 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
-  CLAM: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 14c0-5 3.6-9 8-9s8 4 8 9c0 3.2-3.6 5-8 5s-8-1.8-8-5Z" stroke="currentColor" stroke-width="2.1"/><path d="M12 6v11M8 7.5l2 9M16 7.5l-2 9M5.5 11h13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
-  FEST: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m12 2.8 2.4 5.5 6 .6-4.6 4 1.4 5.8-5.2-3.1-5.2 3.1 1.4-5.8-4.6-4 6-.6L12 2.8Z" fill="currentColor"/><circle cx="12" cy="12" r="2.2" fill="#111115"/></svg>',
-  DEFAULT: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2.2"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>',
+  TURF_WAR: `${SPLATOON3_INK_ASSETS}/rules/regular.svg`,
+  AREA: `${SPLATOON3_INK_ASSETS}/rules/area.svg`,
+  LOFT: `${SPLATOON3_INK_ASSETS}/rules/yagura.svg`,
+  GOAL: `${SPLATOON3_INK_ASSETS}/rules/hoko.svg`,
+  CLAM: `${SPLATOON3_INK_ASSETS}/rules/asari.svg`,
+  FEST: `${SPLATOON3_INK_ASSETS}/rules/regular.svg`,
+  DEFAULT: `${SPLATOON3_INK_ASSETS}/rules/regular.svg`,
 }
 
 const bossIcons = {
-  'ヨコヅナ': '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9 8 4l4 3 4-3 2 5" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M4.5 15c0-4 3.4-7 7.5-7s7.5 3 7.5 7c0 3.6-3.4 5.5-7.5 5.5S4.5 18.6 4.5 15Z" fill="currentColor"/><circle cx="9.5" cy="14" r="1" fill="#111115"/><circle cx="14.5" cy="14" r="1" fill="#111115"/></svg>',
-  'タツ': '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6c-1.2-2.4-5.8-2.6-7.2.3-1.5 3.1 4.8 3.1 4.4 6.8-.4 3.8-6.2 4.8-9.2 1.4" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="m16 5 1-3m1.5 4L21 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="15.3" cy="6.7" r="1" fill="#111115"/></svg>',
-  'ジョー': '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8c2.6-3 5.2-4 8-4s5.4 1 8 4l-3.2 3L20 16c-2.6 2.7-5.3 4-8 4s-5.4-1.3-8-4l3.2-5L4 8Z" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/><path d="m8 10 2 3 2-3 2 3 2-3" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>',
-  DEFAULT: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12c3-5 9-6.5 15-3l-2 3 2 3c-6 3.5-12 2-15-3Z" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/><circle cx="14.5" cy="10" r="1" fill="currentColor"/></svg>',
+  'ヨコヅナ': `${SPLATOON3_INK_ASSETS}/king-cohozuna.png`,
+  'タツ': `${SPLATOON3_INK_ASSETS}/king-horrorboros.png`,
+  'ジョー': `${SPLATOON3_INK_ASSETS}/king-megalodontia.png`,
+  'オカシラ連合': `${SPLATOON3_INK_ASSETS}/king-triumvirate.png`,
+  DEFAULT: `${SPLATOON3_INK_ASSETS}/king-cohozuna.png`,
 }
 
 const state = {
@@ -54,7 +57,7 @@ root.innerHTML = `
   <div class="display-shell">
     <header class="page-header">
       <div>
-        <div class="brand-kicker ink-font">BATTLE ROTATION</div>
+        <div class="brand-kicker ink-font">Splatoon3 BATTLE ROTATION</div>
         <h1 class="brand-title">ステージ情報</h1>
       </div>
       <div class="header-status">
@@ -113,8 +116,8 @@ function formatTime(value) {
 }
 
 function formatRange(slot) {
-  if (!slot) return '--:-- — --:--'
-  return `${formatTime(slot.start_time)}—${formatTime(slot.end_time)}`
+  if (!slot) return '--:-- - --:--'
+  return `${formatTime(slot.start_time)} - ${formatTime(slot.end_time)}`
 }
 
 function pickSlots(items = [], now = new Date()) {
@@ -178,8 +181,8 @@ function imageMarkup(image, name) {
   `
 }
 
-function scheduleIcon(svg, label, type) {
-  return `<span class="schedule-icon ${type}" role="img" aria-label="${escapeHtml(label)}">${svg}</span>`
+function scheduleIcon(src, label, type) {
+  return `<span class="schedule-icon ${type}" role="img" aria-label="${escapeHtml(label)}"><img src="${escapeHtml(src)}" alt="" loading="eager" referrerpolicy="no-referrer"></span>`
 }
 
 function ruleIconMarkup(slot) {
@@ -237,26 +240,25 @@ function salmonSlotMarkup(entry) {
       <div class="stage-tile salmon-stage">${imageMarkup(slot.stage?.image, slot.stage?.name)}</div>
       <div class="weapon-strip" aria-label="支給ブキ">
         ${(slot.weapons ?? []).slice(0, 4).map((weapon) => {
-          const url = safeImageUrl(weapon.image)
-          return `
+    const url = safeImageUrl(weapon.image)
+    return `
             <div class="weapon" aria-label="${escapeHtml(weapon.name)}">
               ${url ? `<img src="${escapeHtml(url)}" alt="${escapeHtml(weapon.name)}" loading="eager" referrerpolicy="no-referrer" onerror="this.style.opacity='0'">` : ''}
             </div>
           `
-        }).join('')}
+  }).join('')}
       </div>
     </section>
   `
 }
 
-function modeCard({ key, title, subtitle, color, icon, slots, salmon = false }) {
+function modeCard({ key, title, color, icon, slots, salmon = false }) {
   return `
     <article class="mode-card mode-${key}" style="--accent:${color}">
       <header class="mode-header">
         <div class="mode-icon">${icon}</div>
         <div class="mode-title">
           <h2>${escapeHtml(title)}</h2>
-          <p>${escapeHtml(subtitle)}</p>
         </div>
       </header>
       <div class="slots">
@@ -310,8 +312,7 @@ function render() {
   const cards = [
     {
       key: 'regular',
-      title: regularIsFest ? 'フェスマッチ' : 'ナワバリバトル',
-      subtitle: regularIsFest ? 'FEST MATCH' : 'REGULAR BATTLE',
+      title: regularIsFest ? 'フェスマッチ' : 'ナワバリ',
       color: regularIsFest ? colors.fest : colors.regular,
       icon: icons.regular,
       slots: regularSlots,
@@ -319,7 +320,6 @@ function render() {
     {
       key: 'bankara-open',
       title: 'バンカラ・オープン',
-      subtitle: 'ANARCHY BATTLE / OPEN',
       color: colors.bankara,
       icon: icons.bankara,
       slots: pickSlots(battle.bankara_open, now),
@@ -327,7 +327,6 @@ function render() {
     {
       key: 'bankara-challenge',
       title: 'バンカラ・チャレンジ',
-      subtitle: 'ANARCHY BATTLE / SERIES',
       color: colors.bankara,
       icon: icons.bankara,
       slots: pickSlots(battle.bankara_challenge, now),
@@ -335,7 +334,6 @@ function render() {
     {
       key: 'x',
       title: 'Xマッチ',
-      subtitle: 'X BATTLE',
       color: colors.x,
       icon: icons.x,
       slots: pickSlots(battle.x, now),
@@ -343,7 +341,6 @@ function render() {
     {
       key: 'salmon',
       title: 'サーモンラン',
-      subtitle: 'SALMON RUN',
       color: colors.salmon,
       icon: icons.salmon,
       slots: pickSlots(state.data.coop.results, now),
@@ -352,7 +349,6 @@ function render() {
     {
       key: 'event',
       title: 'イベントマッチ',
-      subtitle: 'CHALLENGE',
       color: colors.event,
       icon: icons.event,
       slots: pickSlots(battle.event, now),
