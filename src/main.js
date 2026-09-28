@@ -23,6 +23,23 @@ const icons = {
   event: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m12 2.8 2.3 5.4 5.7.6-4.3 3.9 1.2 5.7-4.9-2.9-4.9 2.9 1.2-5.7L4 8.8l5.7-.6L12 2.8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>',
 }
 
+const ruleIcons = {
+  TURF_WAR: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3C9.5 7 6 10.2 6 14a6 6 0 0 0 12 0c0-3.8-3.5-7-6-11Z" fill="currentColor"/><circle cx="9.5" cy="14" r="1.4" fill="#111115"/><circle cx="14.7" cy="12.5" r="1.2" fill="#111115"/></svg>',
+  AREA: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2" stroke="currentColor" stroke-width="2.2"/><path d="M12 2v5M12 17v5M2 12h5M17 12h5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="12" r="2.3" fill="currentColor"/></svg>',
+  LOFT: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v18M7 8h10v9H7zM5 21h14" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/><path d="m9 5 3-3 3 3" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  GOAL: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12c2.5-4.2 6.6-5.5 10.3-3.4L20 6l-1.5 5L21 14l-6.7 1.4C10.5 17.5 6.4 16.2 4 12Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="13.7" cy="10.8" r="1.2" fill="currentColor"/><path d="m7 15-2 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+  CLAM: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 14c0-5 3.6-9 8-9s8 4 8 9c0 3.2-3.6 5-8 5s-8-1.8-8-5Z" stroke="currentColor" stroke-width="2.1"/><path d="M12 6v11M8 7.5l2 9M16 7.5l-2 9M5.5 11h13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
+  FEST: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m12 2.8 2.4 5.5 6 .6-4.6 4 1.4 5.8-5.2-3.1-5.2 3.1 1.4-5.8-4.6-4 6-.6L12 2.8Z" fill="currentColor"/><circle cx="12" cy="12" r="2.2" fill="#111115"/></svg>',
+  DEFAULT: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2.2"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>',
+}
+
+const bossIcons = {
+  'ヨコヅナ': '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9 8 4l4 3 4-3 2 5" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M4.5 15c0-4 3.4-7 7.5-7s7.5 3 7.5 7c0 3.6-3.4 5.5-7.5 5.5S4.5 18.6 4.5 15Z" fill="currentColor"/><circle cx="9.5" cy="14" r="1" fill="#111115"/><circle cx="14.5" cy="14" r="1" fill="#111115"/></svg>',
+  'タツ': '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6c-1.2-2.4-5.8-2.6-7.2.3-1.5 3.1 4.8 3.1 4.4 6.8-.4 3.8-6.2 4.8-9.2 1.4" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="m16 5 1-3m1.5 4L21 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="15.3" cy="6.7" r="1" fill="#111115"/></svg>',
+  'ジョー': '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8c2.6-3 5.2-4 8-4s5.4 1 8 4l-3.2 3L20 16c-2.6 2.7-5.3 4-8 4s-5.4-1.3-8-4l3.2-5L4 8Z" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/><path d="m8 10 2 3 2-3 2 3 2-3" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>',
+  DEFAULT: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12c3-5 9-6.5 15-3l-2 3 2 3c-6 3.5-12 2-15-3Z" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/><circle cx="14.5" cy="10" r="1" fill="currentColor"/></svg>',
+}
+
 const state = {
   data: null,
   loading: true,
@@ -45,10 +62,10 @@ root.innerHTML = `
           <time class="clock-time" id="clock-time">--:--</time>
           <span class="clock-date" id="clock-date">----.--.-- ---</span>
         </div>
-        <button class="icon-button" type="button" data-action="refresh" aria-label="情報を更新" title="情報を更新">
+        <button class="icon-button" type="button" data-action="refresh" aria-label="情報を更新">
           <svg viewBox="0 0 24 24" width="21" height="21" fill="none" aria-hidden="true"><path d="M19 8a7.5 7.5 0 1 0 .2 7.7M19 4v4h-4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-        <button class="icon-button" type="button" data-action="fullscreen" aria-label="全画面表示" title="全画面表示">
+        <button class="icon-button" type="button" data-action="fullscreen" aria-label="全画面表示">
           <svg viewBox="0 0 24 24" width="21" height="21" fill="none" aria-hidden="true"><path d="M8 4H4v4m12-4h4v4M8 20H4v-4m12 4h4v-4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
       </div>
@@ -161,18 +178,37 @@ function imageMarkup(image, name) {
   `
 }
 
+function scheduleIcon(svg, label, type) {
+  return `<span class="schedule-icon ${type}" role="img" aria-label="${escapeHtml(label)}">${svg}</span>`
+}
+
+function ruleIconMarkup(slot) {
+  const key = slot.rule?.key || (slot.is_fest ? 'FEST' : 'DEFAULT')
+  const label = slot.rule?.name || (slot.is_fest ? 'フェスマッチ' : 'ルール未定')
+  return scheduleIcon(ruleIcons[key] ?? ruleIcons.DEFAULT, label, 'rule-icon')
+}
+
+function bossIconMarkup(slot) {
+  const name = slot.boss?.name || 'オカシラ未定'
+  const key = Object.keys(bossIcons).find((bossName) => bossName !== 'DEFAULT' && name.includes(bossName))
+  return scheduleIcon(bossIcons[key] ?? bossIcons.DEFAULT, `オカシラ ${name}`, 'boss-icon')
+}
+
 function battleSlotMarkup(entry, modeKey) {
   const slot = entry.item
   if (!slot) return emptySlot()
 
-  const eventText = slot.event?.name
-    ? `<div class="event-note" title="${escapeHtml(slot.event.name)}">${escapeHtml(slot.event.name)}</div>`
-    : ''
+  const eventText = modeKey === 'event' && slot.event?.name
+    ? `<div class="slot-extra">${escapeHtml(slot.event.name)}</div>`
+    : '<div class="slot-extra" aria-hidden="true"></div>'
 
   return `
     <section class="slot" aria-label="${entry.stateLabel === 'NOW' ? '現在' : '次'}のステージ">
       <div class="slot-heading">
-        <span class="slot-state">${escapeHtml(entry.stateLabel)}</span>
+        <div class="slot-leading">
+          <span class="slot-state">${escapeHtml(entry.stateLabel)}</span>
+          ${ruleIconMarkup(slot)}
+        </div>
         <time class="slot-time">${formatRange(slot)}</time>
       </div>
       <div class="stage-stack">
@@ -180,7 +216,7 @@ function battleSlotMarkup(entry, modeKey) {
           <div class="stage-tile">${imageMarkup(stage.image, stage.name)}</div>
         `).join('') || emptySlot()}
       </div>
-      ${modeKey === 'event' ? eventText : ''}
+      ${eventText}
     </section>
   `
 }
@@ -192,7 +228,10 @@ function salmonSlotMarkup(entry) {
   return `
     <section class="slot" aria-label="${entry.stateLabel === 'NOW' ? '現在' : '次'}のサーモンラン">
       <div class="slot-heading">
-        <span class="slot-state">${escapeHtml(entry.stateLabel)}</span>
+        <div class="slot-leading">
+          <span class="slot-state">${escapeHtml(entry.stateLabel)}</span>
+          ${bossIconMarkup(slot)}
+        </div>
         <time class="slot-time">${formatRange(slot)}</time>
       </div>
       <div class="stage-tile salmon-stage">${imageMarkup(slot.stage?.image, slot.stage?.name)}</div>
@@ -200,7 +239,7 @@ function salmonSlotMarkup(entry) {
         ${(slot.weapons ?? []).slice(0, 4).map((weapon) => {
           const url = safeImageUrl(weapon.image)
           return `
-            <div class="weapon" title="${escapeHtml(weapon.name)}">
+            <div class="weapon" aria-label="${escapeHtml(weapon.name)}">
               ${url ? `<img src="${escapeHtml(url)}" alt="${escapeHtml(weapon.name)}" loading="eager" referrerpolicy="no-referrer" onerror="this.style.opacity='0'">` : ''}
             </div>
           `
@@ -211,12 +250,6 @@ function salmonSlotMarkup(entry) {
 }
 
 function modeCard({ key, title, subtitle, color, icon, slots, salmon = false }) {
-  const firstRule = slots.find((entry) => entry.item?.rule)?.item?.rule?.name
-  const salmonMeta = slots[0]?.item
-    ? salmonSlotsMeta(slots[0].item)
-    : ''
-  const badge = firstRule || salmonMeta
-
   return `
     <article class="mode-card mode-${key}" style="--accent:${color}">
       <header class="mode-header">
@@ -225,18 +258,12 @@ function modeCard({ key, title, subtitle, color, icon, slots, salmon = false }) 
           <h2>${escapeHtml(title)}</h2>
           <p>${escapeHtml(subtitle)}</p>
         </div>
-        ${badge ? `<span class="rule-badge" title="${escapeHtml(badge)}">${escapeHtml(badge)}</span>` : ''}
       </header>
       <div class="slots">
         ${slots.map((entry) => salmon ? salmonSlotMarkup(entry) : battleSlotMarkup(entry, key)).join('')}
       </div>
     </article>
   `
-}
-
-function salmonSlotsMeta(slot) {
-  if (slot.is_big_run) return 'ビッグラン'
-  return slot.boss?.name ? `オカシラ ${slot.boss.name}` : 'SALMON RUN'
 }
 
 function renderSkeletons() {
