@@ -609,7 +609,7 @@ async function enterFullscreen() {
   }
 }
 
-function openStageImage(trigger) {
+async function openStageImage(trigger) {
   const url = safeImageUrl(trigger.dataset.stageImage)
   if (!url) return
 
@@ -618,6 +618,14 @@ function openStageImage(trigger) {
   stageDialogImage.src = url
   stageDialogImage.alt = `${name}のステージ画像`
   stageDialogTitle.textContent = name
+
+  // デコード完了後に開き、アニメーション中の画像描画でカクつかないようにする
+  try {
+    await stageDialogImage.decode()
+  } catch {
+    // 読み込みに失敗してもダイアログは開く
+  }
+  if (lastStageTrigger !== trigger) return
 
   if (typeof stageDialog.showModal === 'function') {
     if (!stageDialog.open) stageDialog.showModal()
