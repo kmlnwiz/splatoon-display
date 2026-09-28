@@ -246,7 +246,7 @@ function battleSlotMarkup(entry, modeKey) {
   if (!slot) return emptySlot()
 
   const eventText = modeKey === 'event' && slot.event?.name
-    ? `<div class="slot-extra">${escapeHtml(slot.event.name)}</div>`
+    ? `<div class="slot-extra bg-gray-900 rounded-xs">${escapeHtml(slot.event.name)}</div>`
     : '<div class="slot-extra" aria-hidden="true"></div>'
 
   return `
@@ -290,7 +290,7 @@ function salmonSlotMarkup(entry) {
               ${url ? `<img src="${escapeHtml(url)}" alt="${escapeHtml(weapon.name)}" loading="eager" referrerpolicy="no-referrer" onerror="this.style.opacity='0'">` : ''}
             </div>
           `
-        }).join('')}
+  }).join('')}
       </div>
     </section>
   `
@@ -298,7 +298,7 @@ function salmonSlotMarkup(entry) {
 
 function modeCard({ key, title, color, icon, slots, salmon = false }) {
   return `
-    <article class="mode-card mode-${key}" style="--accent:${color}">
+    <article class="mode-card mode-${key} rounded" style="--accent:${color}">
       <header class="mode-header">
         <div class="mode-icon"><img src="${escapeHtml(icon)}" alt="" loading="eager" referrerpolicy="no-referrer"></div>
         <div class="mode-title">
