@@ -294,6 +294,7 @@ button {
 .slot {
   min-width: 0;
   min-height: 0;
+  position: relative;
 }
 
 .mode-card:not(.mode-salmon) .slot {
@@ -357,6 +358,33 @@ button {
   line-height: 1;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.schedule-progress {
+  --progress: 0%;
+  height: 2px;
+  position: absolute;
+  inset: auto 0 0;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.04);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.schedule-progress.is-active {
+  opacity: 0.58;
+}
+
+.schedule-progress-fill {
+  width: var(--progress);
+  height: 100%;
+  display: block;
+  border-radius: inherit;
+  background: var(--accent);
+  box-shadow: 0 0 5px color-mix(in srgb, var(--accent) 45%, transparent);
+  transition: width 1s linear;
 }
 
 .slot-state {

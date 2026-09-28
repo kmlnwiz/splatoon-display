@@ -181,6 +181,14 @@ function imageMarkup(image, name) {
   `
 }
 
+function progressMeterMarkup(slot) {
+  return `
+    <div class="schedule-progress" data-start="${escapeHtml(slot.start_time)}" data-end="${escapeHtml(slot.end_time)}" role="progressbar" aria-label="スケジュール経過時間" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <span class="schedule-progress-fill"></span>
+    </div>
+  `
+}
+
 function scheduleIcon(src, label, type) {
   return `<span class="schedule-icon ${type}" role="img" aria-label="${escapeHtml(label)}"><img src="${escapeHtml(src)}" alt="" loading="eager" referrerpolicy="no-referrer"></span>`
 }
@@ -220,6 +228,7 @@ function battleSlotMarkup(entry, modeKey) {
         `).join('') || emptySlot()}
       </div>
       ${eventText}
+      ${progressMeterMarkup(slot)}
     </section>
   `
 }
@@ -246,8 +255,9 @@ function salmonSlotMarkup(entry) {
               ${url ? `<img src="${escapeHtml(url)}" alt="${escapeHtml(weapon.name)}" loading="eager" referrerpolicy="no-referrer" onerror="this.style.opacity='0'">` : ''}
             </div>
           `
-  }).join('')}
+        }).join('')}
       </div>
+      ${progressMeterMarkup(slot)}
     </section>
   `
 }
@@ -356,7 +366,24 @@ function render() {
   ]
 
   scheduleElement.innerHTML = cards.map(modeCard).join('')
+  updateProgressMeters()
   updateFooter()
+}
+
+function updateProgressMeters(now = Date.now()) {
+  document.querySelectorAll('.schedule-progress').forEach((meter) => {
+    const start = new Date(meter.dataset.start).getTime()
+    const end = new Date(meter.dataset.end).getTime()
+    const active = Number.isFinite(start) && Number.isFinite(end) && start <= now && now < end
+    const duration = end - start
+    const progress = active && duration > 0
+      ? Math.min(100, Math.max(0, ((now - start) / duration) * 100))
+      : 0
+
+    meter.classList.toggle('is-active', active)
+    meter.style.setProperty('--progress', `${progress}%`)
+    meter.setAttribute('aria-valuenow', String(Math.round(progress)))
+  })
 }
 
 function updateClock() {
@@ -373,6 +400,8 @@ function updateClock() {
     day: '2-digit',
     weekday: 'short',
   }).format(now).replaceAll('/', '.')
+
+  updateProgressMeters(now.getTime())
 }
 
 function updateFooter() {
