@@ -328,13 +328,16 @@ button {
   align-items: center;
   justify-content: space-between;
   gap: 5px;
+  overflow: hidden;
 }
 
 .slot-leading {
   min-width: 0;
+  flex: 1 1 auto;
   display: flex;
   align-items: center;
   gap: 7px;
+  overflow: hidden;
 }
 
 .schedule-icon {
@@ -360,6 +363,7 @@ button {
 
 .rule-name {
   min-width: 0;
+  flex: 1 1 auto;
   overflow: hidden;
   color: #f0f0f3;
   font-size: 0.72rem;
@@ -397,6 +401,7 @@ button {
 }
 
 .slot-state {
+  flex: none;
   color: var(--accent);
   font-family: "M PLUS 1p", sans-serif;
   font-size: 0.68rem;
@@ -405,12 +410,25 @@ button {
 }
 
 .slot-time {
+  flex: none;
   color: #aaaab1;
   font-family: "M PLUS 1p", sans-serif;
   font-variant-numeric: tabular-nums;
   font-size: 0.8rem;
   font-weight: 800;
   white-space: nowrap;
+}
+
+.mode-event .slot-heading {
+  gap: 3px;
+}
+
+.mode-event .slot-leading {
+  gap: 4px;
+}
+
+.mode-event .rule-name {
+  font-size: 0.68rem;
 }
 
 .stage-stack {

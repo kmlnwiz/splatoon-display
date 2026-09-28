@@ -148,7 +148,7 @@ function pickSlots(items = [], now = new Date()) {
   const futureIndex = valid.findIndex((item) => new Date(item.start_time) > now)
   if (futureIndex >= 0) {
     return [
-      { item: valid[futureIndex], stateLabel: 'UPCOMING' },
+      { item: valid[futureIndex], stateLabel: 'NEXT' },
       { item: valid[futureIndex + 1] ?? null, stateLabel: 'AFTER' },
     ]
   }
